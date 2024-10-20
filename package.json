@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "tests": "npx playwright test",
+    "test": "npx playwright test -g",
+    "debug": "npx playwright test --debug -g",
+    "report": "npx playwright show-report test-results/report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.48.1",
-    "@types/node": "^22.7.7"
+    "@types/node": "^22.7.7",
+    "@faker-js/faker": "^9.0.3"
   }
 }

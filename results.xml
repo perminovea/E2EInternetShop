@@ -1,0 +1,6 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="89.517288">
+<testsuite name="shipping.spec.ts" timestamp="2024-10-20T08:05:41.623Z" hostname="chromium" tests="1" failures="0" skipped="0" time="86.994" errors="0">
+<testcase name="circe_hooded_ice_edit" classname="shipping.spec.ts" time="86.994">
+</testcase>
+</testsuite>
+</testsuites>
