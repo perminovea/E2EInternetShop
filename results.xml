@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="89.517288">
-<testsuite name="shipping.spec.ts" timestamp="2024-10-20T08:05:41.623Z" hostname="chromium" tests="1" failures="0" skipped="0" time="86.994" errors="0">
-<testcase name="circe_hooded_ice_edit" classname="shipping.spec.ts" time="86.994">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="10.370895">
+<testsuite name="cart.spec.ts" timestamp="2024-10-22T16:06:17.998Z" hostname="chromium" tests="1" failures="0" skipped="0" time="9.325" errors="0">
+<testcase name="product_cart_form_error" classname="cart.spec.ts" time="9.325">
 </testcase>
 </testsuite>
 </testsuites>
