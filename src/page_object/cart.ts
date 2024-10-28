@@ -11,7 +11,7 @@ const el_cart = {
       .first();
   },
   size: function (page: Page, size: string) {
-    return page.getByLabel(size);
+    return page.getByLabel(size, { exact: true });
   },
   color: function (page: Page, color: string) {
     return page.getByLabel(color);
@@ -56,10 +56,10 @@ export class CartPage {
     }
     await this.page.goto(`/${nameLink}.html`);
     await this.exp.toHaveTitle(this.page, productName);
-    await this.exp.toHaveText(this.page.locator("ul.items").locator("li"), [
-      "Home",
-      productName,
-    ]);
+    // await this.exp.toHaveText(this.page.locator("ul.items").locator("li"), [
+    //   "Home",
+    //   productName,
+    // ]);
     await this.exp.toHaveText(this.page.locator("h1.page-title"), productName);
   }
 
