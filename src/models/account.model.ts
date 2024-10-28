@@ -1,6 +1,6 @@
 import { Locator } from "@playwright/test";
 
-export interface IAccountTestData {
+export interface IAccount {
   firstName: string;
   lastName: string;
   email: string;
@@ -8,10 +8,15 @@ export interface IAccountTestData {
   passwordConfirm: string;
 }
 
-export interface IElAccountNewForm {
+export interface IAccountCreateComponentForm {
   firstName: Locator;
   lastName: Locator;
   email: Locator;
   password: Locator;
   passwordConfirm: Locator;
+}
+
+export interface IAccountSignInComponentForm {
+  email: Locator;
+  password: Locator;
 }

@@ -1,75 +1,134 @@
 import test from "@playwright/test";
-import dataJson from "../src/test_data/cart.json";
 import { CartPage } from "../src/page_object/cart";
+import { DataTest } from "../src/page_object/test_data";
+import { ICart } from "../src/models/cart.model";
 
-test("product_add_to_cart", async ({ page }) => {
-  const product = { ...dataJson };
-  const mCart = new CartPage(page);
-  await mCart.goto(product.name);
-  await mCart.fillCart(product);
-  await mCart.addCart();
-  await mCart.basket.checkQty(product.qty);
-});
+test.describe("product", function () {
+  let product: ICart;
 
-test("product_cart_form_error", async ({ page }) => {
-  const product = { ...dataJson };
-  const mCart = new CartPage(page);
-  await mCart.goto(product.name);
-  await mCart.addCart();
-  await mCart.checkFormCartError();
-});
+  test.beforeEach(async function () {
+    const mDataTest = new DataTest();
+    mDataTest.initDataCart();
+    product = mDataTest.cart;
+  });
 
-test("product_cart_check_basket_inf", async ({ page }) => {
-  const product = { ...dataJson };
-  const mCart = new CartPage(page);
-  await mCart.goto(product.name);
-  await mCart.fillCart(product);
-  await mCart.addCart();
-  await mCart.basket.checkQty(product.qty);
-  await mCart.basket.clickBasket();
-  await mCart.basket.checkCartsAll(product);
-  await mCart.basket.checkCart(product);
-});
+  test(
+    "cart_add",
+    {
+      annotation: {
+        type: "task",
+        description: "Проверка корзины после добавления товара",
+      },
+    },
+    async ({ page }) => {
+      const mCart = new CartPage(page);
+      await mCart.gotoCart(product.name);
+      await mCart.fillCart(product);
+      await mCart.addCart();
+      await mCart.basket.checkBasketQty(product.qty);
+    }
+  );
 
-test("product_cart_check_update_basket_inf", async ({ page }) => {
-  const product = { ...dataJson };
-  const mCart = new CartPage(page);
-  await mCart.goto(product.name);
-  await mCart.fillCart(product);
-  await mCart.addCart();
-  await mCart.basket.checkQty(product.qty);
-  await mCart.basket.clickBasket();
-  product.qty = 7;
-  await mCart.basket.updateQtyCart(product);
-});
+  test(
+    "cart_form_error",
+    {
+      annotation: {
+        type: "task",
+        description: "Проверка подсказки если не указать данные товара",
+      },
+    },
+    async ({ page }) => {
+      const mCart = new CartPage(page);
+      await mCart.gotoCart(product.name);
+      await mCart.addCart();
+      await mCart.checkFormCartError();
+    }
+  );
 
-test("product_cart_check_delete_cart", async ({ page }) => {
-  const product = { ...dataJson };
-  const mCart = new CartPage(page);
-  await mCart.goto(product.name);
-  await mCart.fillCart(product);
-  await mCart.addCart();
-  await mCart.basket.checkQty(product.qty);
-  await mCart.basket.clickBasket();
-  await mCart.basket.deleteCart();
-});
+  test(
+    "basket_cart_inform",
+    {
+      annotation: {
+        type: "task",
+        description: "Проверка данных о товаре в корзине",
+      },
+    },
+    async ({ page }) => {
+      const mCart = new CartPage(page);
+      await mCart.gotoCart(product.name);
+      await mCart.fillCart(product);
+      await mCart.addCart();
+      await mCart.basket.checkBasketQty(product.qty);
+      await mCart.basket.clickBasket();
+      await mCart.basket.checkBasketItems(product);
+      await mCart.basket.checkBasketCart(product);
+    }
+  );
 
-test("product_cart_check_edit_cart", async ({ page }) => {
-  const product = { ...dataJson };
-  const mCart = new CartPage(page);
-  await mCart.goto(product.name);
-  await mCart.fillCart(product);
-  await mCart.addCart();
-  await mCart.basket.checkQty(product.qty);
-  await mCart.basket.clickBasket();
-  await mCart.basket.editCart();
-  product.size = "M";
-  product.color = "Green";
-  product.qty = 2;
-  await mCart.fillCart(product);
-  await mCart.updateCart();
-  await mCart.basket.checkQty(product.qty);
-  await mCart.basket.clickBasket();
-  await mCart.basket.checkCartsAll(product);
-  await mCart.basket.checkCart(product);
+  test(
+    "basket_cart_update",
+    {
+      annotation: {
+        type: "task",
+        description: "Изменение кол-ва товара в корзине",
+      },
+    },
+    async ({ page }) => {
+      const mCart = new CartPage(page);
+      await mCart.gotoCart(product.name);
+      await mCart.fillCart(product);
+      await mCart.addCart();
+      await mCart.basket.checkBasketQty(product.qty);
+      await mCart.basket.clickBasket();
+      product.qty = 7;
+      await mCart.basket.updateBasketCartQty(product);
+    }
+  );
+
+  test(
+    "basket_cart_delete",
+    {
+      annotation: {
+        type: "task",
+        description: "Удаление товара из корзины",
+      },
+    },
+    async ({ page }) => {
+      const mCart = new CartPage(page);
+      await mCart.gotoCart(product.name);
+      await mCart.fillCart(product);
+      await mCart.addCart();
+      await mCart.basket.checkBasketQty(product.qty);
+      await mCart.basket.clickBasket();
+      await mCart.basket.deleteBasketCart();
+    }
+  );
+
+  test(
+    "basket_cart_edit",
+    {
+      annotation: {
+        type: "task",
+        description: "Редактирование товара из корзины",
+      },
+    },
+    async ({ page }) => {
+      const mCart = new CartPage(page);
+      await mCart.gotoCart(product.name);
+      await mCart.fillCart(product);
+      await mCart.addCart();
+      await mCart.basket.checkBasketQty(product.qty);
+      await mCart.basket.clickBasket();
+      await mCart.basket.editeBasketCart();
+      product.size = "M";
+      product.color = "Green";
+      product.qty = 2;
+      await mCart.fillCart(product);
+      await mCart.updateCart();
+      await mCart.basket.checkBasketQty(product.qty);
+      await mCart.basket.clickBasket();
+      await mCart.basket.checkBasketItems(product);
+      await mCart.basket.checkBasketCart(product);
+    }
+  );
 });

@@ -1,9 +1,11 @@
 import { faker } from "@faker-js/faker";
-import { IAccountTestData } from "../models/account.model";
+import { IAccount } from "../models/account.model";
 import dataAccount from "../test_data/account.json";
-import { step } from "./step";
+import dataCart from "../test_data/cart.json";
+import { step } from "../main";
+import { ICart } from "../models/cart.model";
 
-function getAccountData(): IAccountTestData {
+function getAccountData(): IAccount {
   const password = faker.internet.password();
   return {
     firstName: faker.person.firstName(),
@@ -15,7 +17,8 @@ function getAccountData(): IAccountTestData {
 }
 
 export class DataTest {
-  account: IAccountTestData;
+  account: IAccount;
+  cart: ICart;
 
   @step
   initDataAccount(conf: { isNew: boolean }) {
@@ -24,5 +27,10 @@ export class DataTest {
     } else {
       this.account = getAccountData();
     }
+  }
+
+  @step
+  initDataCart() {
+    this.cart = { ...dataCart };
   }
 }

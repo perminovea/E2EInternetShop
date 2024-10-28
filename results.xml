@@ -1,6 +1,10 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="23.168969">
-<testsuite name="cart.spec.ts" timestamp="2024-10-28T14:43:54.165Z" hostname="chromium" tests="1" failures="0" skipped="0" time="21.956" errors="0">
-<testcase name="product_cart_check_edit_cart" classname="cart.spec.ts" time="21.956">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="8.707957999999984">
+<testsuite name="account_sign_in.spec.ts" timestamp="2024-10-28T16:43:40.494Z" hostname="chromium" tests="1" failures="0" skipped="0" time="7.378" errors="0">
+<testcase name="account_sign_in › account_sign_in_form_error" classname="account_sign_in.spec.ts" time="7.378">
+<properties>
+<property name="task" value="Проверка подсказок при авторизации">
+</property>
+</properties>
 </testcase>
 </testsuite>
 </testsuites>

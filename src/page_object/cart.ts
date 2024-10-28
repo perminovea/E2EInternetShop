@@ -1,8 +1,8 @@
 import { Locator, Page } from "@playwright/test";
-import { PlaywrightExp } from "./playwright_exp";
-import { step } from "./step";
-import { ICartTestData } from "../models/cart.model";
+
 import { BasketPage } from "./basket";
+import { getPriceInDollars, PlaywrightExp, step } from "../main";
+import { ICart } from "../models/cart.model";
 
 const el_cart = {
   price: function (page: Page) {
@@ -42,7 +42,7 @@ export class CartPage {
   }
 
   @step
-  async goto(productName: string) {
+  async gotoCart(productName: string) {
     const nameLower = productName.toLowerCase();
     const nameArr = nameLower.split(" ");
     let nameLink = "";
@@ -64,10 +64,10 @@ export class CartPage {
   }
 
   @step
-  async fillCart(data: ICartTestData) {
+  async fillCart(data: ICart) {
     await this.exp.toHaveText(
       el_cart.price(this.page),
-      `$${Number(data.price).toFixed(2)}`
+      getPriceInDollars(data.price)
     );
     await el_cart.size(this.page, data.size).click();
     await el_cart.color(this.page, data.color).click();

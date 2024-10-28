@@ -1,4 +1,4 @@
-export interface ICartTestData {
+export interface ICart {
   name: string;
   size: string;
   color: string;
