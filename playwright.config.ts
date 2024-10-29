@@ -23,7 +23,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   //forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: 2, //process.env.CI ? 2 : 0,
   reporter: [
     ["list", { printSteps: true }],
     ["html", { open: "never", outputFolder: "./test-results/report/" }],

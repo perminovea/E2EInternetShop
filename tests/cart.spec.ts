@@ -3,7 +3,7 @@ import { CartPage } from "../src/page_object/cart";
 import { DataTest } from "../src/page_object/test_data";
 import { ICart } from "../src/models/cart.model";
 
-test.describe.skip("product", function () {
+test.describe("product", function () {
   let product: ICart;
 
   test.beforeEach(async function () {
