@@ -41,7 +41,7 @@ export default defineConfig({
     baseURL: "https://magento.softwaretestingboard.com",
     testIdAttribute: "id",
     actionTimeout: 10000,
-    headless: false,
+    headless: true,
     browserName: "chromium",
     viewport: { width: 1920, height: 1080 },
     screenshot: "only-on-failure",
