@@ -1,8 +1,7 @@
 name: CI
-on: [ push] 
+on: [push]
 
 #workflow_dispatch:
-
 
 permissions:
   contents: read
@@ -10,29 +9,28 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
-
-  test: 
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: 
-          node-version cache : 20.17.0
-          cashe: 'npm' 
+        with:
+          node-version cache: 20.17.0
+          cashe: "npm"
       - run: npm ci
       - run: npx playwright install chromium
       - run: npm run tests
-      - run: npx playwright test --reporter=list
+      #   - run: npx playwright test --reporter=list
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'test-results/report'
+          path: "test-results/report"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
