@@ -24,7 +24,7 @@ jobs:
           node-version cache : 20.17.0
           cashe: 'npm' 
       - run: npm ci
-      - run: npx playwright install-deps chromium.
+      - run: npx playwright install-deps chromium
       - run: npm run tests
       - run: npm run report:ci
       - name: Setup Pages
