@@ -26,7 +26,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install chromium
       - run: npm run tests
-      - run: npm run report
+      - run: npx playwright test --reporter=list
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

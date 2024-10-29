@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 /**
  * Read environment variables from file.
@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
   outputDir: "./test-results/screenshots",
   timeout: 5 * 60 * 1000,
   expect: {
@@ -24,18 +24,18 @@ export default defineConfig({
   //forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  reporter: [
-    ["list", { printSteps: true }],
-    ["html", { open: "never", outputFolder: "./test-results/report/" }],
-    [
-      "junit",
-      { outputFolder: "./test-results/report/", outputFile: "results.xml" },
-    ],
-  ],
+  // reporter: [
+  //   ["list", { printSteps: true }],
+  //   ["html", { open: "never", outputFolder: "./test-results/report/" }],
+  //   [
+  //     "junit",
+  //     { outputFolder: "./test-results/report/", outputFile: "results.xml" },
+  //   ],
+  // ],
   /* Opt out of parallel tests on CI. */
   //workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  //reporter: 'html',
+  reporter: process.env.CI ? "dot" : "list",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL: "https://magento.softwaretestingboard.com",
@@ -52,14 +52,14 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
     },
 
     // {
