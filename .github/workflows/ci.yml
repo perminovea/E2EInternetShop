@@ -24,6 +24,7 @@ jobs:
           node-version cache : 20.17.0
           cashe: 'npm' 
       - run: npm ci
+      - run: npm playwright install
       - run: npm run tests
       - run: npm run report:ci
       - name: Setup Pages
