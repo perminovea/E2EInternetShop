@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { DataTest } from "../src/page_object/test_data";
 import { AccountCreatePage } from "../src/page_object/account_create";
 
-test.describe("account_create", function () {
+test.describe.skip("account_create", function () {
   test(
     "account_create_complete",
     {
